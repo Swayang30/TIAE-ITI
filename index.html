@@ -1185,6 +1185,33 @@
   .animate-delay-4 { transition-delay: 0.4s; }
   .animate-delay-5 { transition-delay: 0.5s; }
 
+  /* ===== FLOATING MOBILE CTA BAR ===== */
+  .mobile-cta-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    background: var(--gold);
+    padding: 13px 20px;
+    text-align: center;
+    box-shadow: 0 -4px 18px rgba(0,0,0,0.3);
+  }
+
+  .mobile-cta-bar a {
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
   /* ===== MOBILE RESPONSIVE ===== */
   @media (max-width: 1024px) {
     .courses-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1192,63 +1219,70 @@
   }
 
   @media (max-width: 768px) {
+    body { padding-bottom: 56px; }
+
+    .mobile-cta-bar { display: block; }
+
     #hero {
       grid-template-columns: 1fr;
       min-height: auto;
     }
 
-    .carousel-wrapper { height: 360px; }
+    .carousel-wrapper { height: 320px; }
+
+    .slide { padding: 24px; }
+    .slide-content { padding: 0; }
+    .slide-content h2 { font-size: 20px; }
+    .slide-content p { font-size: 13px; line-height: 1.6; }
+    .slide-content .badge { font-size: 10px; margin-bottom: 10px; }
+
+    .carousel-btn { width: 38px; height: 38px; font-size: 14px; }
 
     .form-col {
       max-height: none;
       border-left: none;
       border-top: 1px solid var(--gold-border);
+      padding: 24px 16px;
     }
 
-    .features-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
 
-    .process-grid {
-      grid-template-columns: 1fr;
-    }
+    .process-grid { grid-template-columns: 1fr; }
 
-    .courses-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .step-card { padding: 16px; gap: 12px; }
+    .step-number { font-size: 38px; min-width: 42px; }
 
-    .recognition-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .courses-grid { grid-template-columns: repeat(2, 1fr); }
 
-    .fee-grid {
-      grid-template-columns: 1fr;
-    }
+    .recognition-grid { grid-template-columns: repeat(2, 1fr); }
 
-    .footer-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
+    .fee-grid { grid-template-columns: 1fr; }
+    .fee-card { padding: 22px; }
 
-    .stats-row {
-      flex-wrap: wrap;
-    }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
 
+    .stats-row { flex-wrap: wrap; }
     .stat-item {
-      min-width: 130px;
+      min-width: 120px;
+      flex: 1 1 40%;
+      padding: 8px 16px;
     }
-
     .stat-item::after { display: none; }
 
-    #why-tiae, #admission-process, #trade-courses, #faculty, #fee-structure, #principal-message, #govt-recognition {
+    #why-tiae, #admission-process, #trade-courses, #faculty,
+    #fee-structure, #principal-message, #govt-recognition, #stats-strip {
       padding: 40px 4%;
     }
 
-    .slide-content h2 { font-size: 20px; }
-    .slide-content { padding: 0; }
-    .slide { padding: 28px; }
-
     #faculty .heading-wrap .faculty-big { font-size: 42px; }
+
+    .principal-quote { font-size: 14px; line-height: 1.8; }
+    .quote-mark { font-size: 64px; }
+    .principal-profile { flex-direction: column; text-align: center; }
+    .principal-info { text-align: center; }
+
+    .section-heading h2 { font-size: clamp(20px, 5vw, 28px); }
+    .section-subtitle { font-size: 14px; margin-bottom: 24px; }
   }
 
   @media (max-width: 480px) {
@@ -1257,8 +1291,66 @@
     .recognition-grid { grid-template-columns: repeat(2, 1fr); }
 
     #faculty .heading-wrap .meet-our { font-size: 28px; }
-    #faculty .heading-wrap .faculty-big { font-size: 36px; }
-    .faculty-card { flex: 0 0 calc(50% - 12px); }
+    #faculty .heading-wrap .faculty-big { font-size: 32px; }
+    .faculty-card { flex: 0 0 calc(50% - 10px); }
+
+    .carousel-wrapper { height: 280px; }
+    .slide { padding: 18px; }
+    .slide-content h2 { font-size: 18px; }
+    .slide-content p { font-size: 12px; }
+
+    .form-col { padding: 18px 14px; }
+    .form-col h3 { font-size: 18px; margin-bottom: 14px; }
+
+    .step-number { font-size: 30px; }
+    .step-card { padding: 14px; gap: 10px; }
+    .step-icon-wrap { width: 36px; height: 36px; }
+
+    .stat-number { font-size: clamp(28px, 9vw, 40px); }
+    .stat-label { font-size: 11px; }
+
+    #govt-recognition h2 { font-size: 18px; letter-spacing: 1px; }
+
+    .course-card { padding: 22px 16px; }
+    .course-card i { font-size: 32px; }
+    .course-card h3 { font-size: 16px; }
+
+    .feature-card { padding: 18px; }
+
+    .footer-grid { padding-bottom: 28px; }
+
+    .mobile-cta-bar a { font-size: 14px; }
+  }
+
+  @media (max-width: 360px) {
+    .carousel-wrapper { height: 250px; }
+    .slide { padding: 14px; }
+    .slide-content h2 { font-size: 16px; }
+    .slide-content p { font-size: 11px; }
+    .slide-content .badge { font-size: 9px; padding: 3px 10px; }
+
+    .faculty-card { flex: 0 0 100%; }
+    .recognition-grid { grid-template-columns: 1fr; }
+    .stat-item { flex: 1 1 100%; }
+
+    .form-col h3 { font-size: 16px; }
+    .form-col { padding: 16px 12px; }
+
+    .principal-quote { font-size: 13px; line-height: 1.75; }
+    .quote-mark { font-size: 50px; }
+
+    .step-number { font-size: 26px; min-width: 34px; }
+    .step-card { padding: 12px; }
+
+    #sendOtpBtn { padding: 10px 8px; font-size: 10px; }
+
+    .section-heading h2 { font-size: 20px; }
+
+    .recognition-card p { font-size: 10px; }
+    .recognition-card span { font-size: 9px; }
+
+    .footer-col h4 { font-size: 14px; }
+    .footer-col p, .footer-col a, .footer-col .contact-item { font-size: 12px; }
   }
 </style>
 </head>
