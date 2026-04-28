@@ -281,33 +281,6 @@
 
   .form-group.error .error-msg { display: block; }
 
-  .otp-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 8px;
-    align-items: start;
-  }
-
-  .otp-row .form-group { margin-bottom: 0; }
-
-  #sendOtpBtn {
-    background: var(--gold);
-    color: #000;
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 10px 12px;
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-    font-family: 'Poppins', sans-serif;
-    transition: var(--transition);
-    height: 40px;
-  }
-
-  #sendOtpBtn:hover { background: #a89a3e; }
-  #sendOtpBtn:disabled { opacity: 0.6; cursor: not-allowed; }
-
   .phone-row {
     display: grid;
     grid-template-columns: 60px 1fr;
@@ -1342,8 +1315,6 @@
     .step-number { font-size: 26px; min-width: 34px; }
     .step-card { padding: 12px; }
 
-    #sendOtpBtn { padding: 10px 8px; font-size: 10px; }
-
     .section-heading h2 { font-size: 20px; }
 
     .recognition-card p { font-size: 10px; }
@@ -1463,16 +1434,6 @@
         </div>
       </div>
 
-      <!-- OTP -->
-      <div style="display:grid; grid-template-columns:1fr auto; gap:8px; margin-bottom:12px; align-items:flex-start;">
-        <div class="form-group" id="fg-otp" style="margin-bottom:0;">
-          <i class="fa-solid fa-lock input-icon"></i>
-          <input type="text" id="inp-otp" placeholder="Enter OTP" maxlength="6">
-          <div class="error-msg">Please enter the OTP</div>
-        </div>
-        <button type="button" id="sendOtpBtn" onclick="handleSendOtp()">Send OTP</button>
-      </div>
-
       <!-- Trade -->
       <div class="form-group" id="fg-trade">
         <i class="fa-solid fa-building-columns input-icon"></i>
@@ -1528,7 +1489,7 @@
       <!-- Source -->
       <div class="form-group" style="margin-bottom:10px;">
         <i class="fa-solid fa-school input-icon"></i>
-        <select>
+        <select id="inp-source">
           <option value="">How did you hear about us?</option>
           <option>Social Media (Facebook/Instagram)</option>
           <option>YouTube</option>
@@ -2151,33 +2112,7 @@
 
   startAutoplay();
 
-  // ========== OTP BUTTON ==========
-  function handleSendOtp() {
-    const phone = document.getElementById('inp-phone').value.trim();
-    const btn = document.getElementById('sendOtpBtn');
-
-    if (!/^\d{10}$/.test(phone)) {
-      document.getElementById('fg-phone').classList.add('error');
-      return;
-    }
-
-    document.getElementById('fg-phone').classList.remove('error');
-    btn.disabled = true;
-    let countdown = 30;
-    btn.textContent = `${countdown}s`;
-
-    const timer = setInterval(() => {
-      countdown--;
-      btn.textContent = countdown > 0 ? `${countdown}s` : 'Resend';
-      if (countdown <= 0) {
-        clearInterval(timer);
-        btn.disabled = false;
-        btn.textContent = 'Resend';
-      }
-    }, 1000);
-  }
-
-  // ========== FORM VALIDATION ==========
+  // ========== FORM SUBMISSION ==========
   function submitEnquiry(e) {
     e.preventDefault();
     let valid = true;
@@ -2208,12 +2143,44 @@
       document.getElementById('consent').style.outline = '';
     }
 
-    if (valid) {
+    if (!valid) return;
+
+    const btn = document.querySelector('.apply-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const sourceEl = document.getElementById('inp-source');
+    const payload = {
+      Name:     document.getElementById('inp-name').value.trim(),
+      Email:    document.getElementById('inp-email').value.trim(),
+      Phone:    document.querySelector('.phone-prefix').value + ' ' + document.getElementById('inp-phone').value.trim(),
+      Trade:    document.getElementById('inp-trade').value,
+      Session:  document.getElementById('inp-session').value,
+      District: document.getElementById('inp-district').value,
+      Source:   sourceEl.value || 'Not specified',
+      _subject: 'New Admission Enquiry — TIAE ITI',
+      _cc:      'ajaymondal0404@gmail.com,strategy@pland.in',
+      _template:'table',
+      _captcha: 'false'
+    };
+
+    fetch('https://formsubmit.co/ajax/tagoreitic@gmail.com', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(() => {
       document.getElementById('formSuccess').style.display = 'block';
       document.getElementById('enquiryForm').querySelectorAll('input, select').forEach(el => el.disabled = true);
-      document.querySelector('.apply-btn').disabled = true;
-      document.querySelector('.apply-btn').style.opacity = '0.5';
-    }
+      btn.textContent = 'Submitted';
+      btn.style.opacity = '0.5';
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.textContent = 'Apply Now';
+      alert('Submission failed. Please try again or call us at 9064393214.');
+    });
   }
 
   // Clear error on input
