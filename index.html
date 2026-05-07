@@ -1816,7 +1816,7 @@
             for DNC/NDNC. *</label>
         </div>
 
-        <button type="submit" class="apply-btn" onclick="submitEnquiry(event)">Apply Now</button>
+        <button type="submit" class="apply-btn">Apply Now</button>
 
         <div class="track-link">
           Already registered? <a href="#">Track Application</a>
@@ -2440,7 +2440,7 @@
     startAutoplay();
 
     // ========== FORM SUBMISSION ==========
-    function submitEnquiry(e) {
+    document.getElementById('enquiryForm').addEventListener('submit', function (e) {
       e.preventDefault();
       let valid = true;
 
@@ -2476,7 +2476,6 @@
       btn.disabled = true;
       btn.textContent = 'Sending...';
 
-      const sourceEl = document.getElementById('inp-source');
       const payload = {
         Name: document.getElementById('inp-name').value.trim(),
         Email: document.getElementById('inp-email').value.trim(),
@@ -2484,31 +2483,36 @@
         Trade: document.getElementById('inp-trade').value,
         Session: document.getElementById('inp-session').value,
         District: document.getElementById('inp-district').value,
-        Source: sourceEl.value || 'Not specified',
+        Source: document.getElementById('inp-source').value || 'Not specified',
         _subject: 'New Admission Enquiry — TIAE ITI',
-        _cc: 'ajaymondal0404@gmail.com,strategy@pland.in',
+        _cc: 'ajaymondal0404@gmail.com',
+        _replyto: document.getElementById('inp-email').value.trim(),
         _template: 'table',
         _captcha: 'false'
       };
 
-      fetch('https://formsubmit.co/ajax/tagoreitic@gmail.com', {
+      fetch('https://formsubmit.co/ajax/strategy@pland.in', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       })
-        .then(res => res.json())
-        .then(() => {
-          document.getElementById('formSuccess').style.display = 'block';
-          document.getElementById('enquiryForm').querySelectorAll('input, select').forEach(el => el.disabled = true);
-          btn.textContent = 'Submitted';
-          btn.style.opacity = '0.5';
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
         })
-        .catch(() => {
+        .then(function (data) {
+          if (data.success === 'true' || data.success === true) {
+            window.location.href = 'thank-you.html';
+          } else {
+            throw new Error('not delivered');
+          }
+        })
+        .catch(function () {
           btn.disabled = false;
           btn.textContent = 'Apply Now';
           alert('Submission failed. Please try again or call us at 9064393214.');
         });
-    }
+    });
 
     // Clear error on input
     document.querySelectorAll('.form-group input, .form-group select').forEach(el => {
