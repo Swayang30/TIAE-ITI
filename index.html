@@ -251,182 +251,112 @@
       border-color: var(--gold);
     }
 
-    /* FORM CARD */
+    /* CALL WIDGET CARD */
     .form-col {
       background: var(--bg-form);
       border-left: 1px solid var(--gold-border);
-      padding: 20px 18px;
+      padding: 32px 24px;
       overflow-y: hidden;
       max-height: 600px;
       backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .form-col h3 {
-      font-size: 20px;
+    .call-widget {
+      text-align: center;
+      width: 100%;
+    }
+
+    .call-icon-wrap {
+      width: 84px;
+      height: 84px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 22px;
+      animation: pulse-ring 2.2s ease-in-out infinite;
+    }
+
+    .call-icon-wrap i {
+      font-size: 36px;
+      color: #fff;
+    }
+
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0   rgba(197, 179, 88, 0.65); }
+      70%  { box-shadow: 0 0 0 22px rgba(197, 179, 88, 0); }
+      100% { box-shadow: 0 0 0 0   rgba(197, 179, 88, 0); }
+    }
+
+    .call-widget h3 {
+      font-size: 21px;
       font-weight: 700;
       color: var(--gold);
-      text-align: center;
       margin-bottom: 12px;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
       font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.4px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .call-prompt {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 13px;
+      line-height: 1.75;
+      margin-bottom: 28px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .call-numbers {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .call-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--gold);
+      color: #fff;
+      border-radius: 30px;
+      padding: 15px 24px;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none;
+      transition: var(--transition);
       letter-spacing: 0.5px;
     }
 
-    .form-group {
-      position: relative;
-      margin-bottom: 9px;
-    }
-
-    .form-group .input-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--gold);
-      font-size: 13px;
-      z-index: 2;
-    }
-
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      background: var(--bg-input);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-sm);
-      padding: 10px 12px 10px 34px;
-      color: #fff;
-      font-size: 13px;
-      font-family: 'Roboto', sans-serif;
-      outline: none;
-      transition: var(--transition);
-    }
-
-    .form-group input::placeholder {
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 12px;
-    }
-
-    .form-group select option {
-      background: #1a1a1a;
-      color: #fff;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-      background: var(--gold-focus-bg);
-      border-color: var(--gold);
-    }
-
-    .form-group.error input,
-    .form-group.error select {
-      border-color: #ff4444;
-    }
-
-    .error-msg {
-      color: #ff6b6b;
-      font-size: 10px;
-      margin-top: 3px;
-      display: none;
-    }
-
-    .form-group.error .error-msg {
-      display: block;
-    }
-
-    .phone-row {
-      display: grid;
-      grid-template-columns: 60px 1fr;
-      gap: 8px;
-      align-items: start;
-    }
-
-    .phone-row .form-group {
-      margin-bottom: 0;
-    }
-
-    .phone-prefix {
-      background: var(--bg-input);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-sm);
-      padding: 10px 8px;
-      color: #fff;
-      font-size: 12px;
-      font-family: 'Roboto', sans-serif;
-      outline: none;
-      width: 100%;
-    }
-
-    .phone-prefix:focus {
-      background: var(--gold-focus-bg);
-      border-color: var(--gold);
-    }
-
-    .consent-row {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-      margin: 8px 0;
-    }
-
-    .consent-row input[type="checkbox"] {
-      accent-color: var(--gold);
-      width: 14px;
-      height: 14px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .consent-row label {
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 10px;
-      line-height: 1.5;
-    }
-
-    .apply-btn {
-      width: 100%;
-      background: var(--gold);
-      color: #fff;
-      border: none;
-      border-radius: 30px;
-      height: 44px;
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      cursor: pointer;
-      font-family: 'Poppins', sans-serif;
-      transition: var(--transition);
-      margin-bottom: 8px;
-    }
-
-    .apply-btn:hover {
+    .call-btn:hover {
       background: #a89a3e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(197, 179, 88, 0.4);
     }
 
-    .track-link {
-      text-align: center;
+    .call-btn i {
+      font-size: 16px;
+    }
+
+    .call-hours {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.4);
       font-size: 11px;
-      color: rgba(255, 255, 255, 0.5);
+      font-family: 'Roboto', sans-serif;
     }
 
-    .track-link a {
+    .call-hours i {
       color: var(--gold);
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    /* Success state */
-    .form-success {
-      display: none;
-      background: var(--gold-focus-bg);
-      border: 1px solid var(--gold-border);
-      border-radius: var(--radius-sm);
-      padding: 16px;
-      text-align: center;
-      color: var(--gold);
-      font-size: 14px;
-      font-family: 'Poppins', sans-serif;
-      margin-top: 12px;
+      font-size: 12px;
     }
 
     /* ===== SECTION HEADING STYLE ===== */
@@ -1443,7 +1373,12 @@
         max-height: none;
         border-left: none;
         border-top: 1px solid var(--gold-border);
-        padding: 24px 16px;
+        padding: 36px 20px;
+      }
+
+      .call-btn {
+        font-size: 15px;
+        padding: 13px 20px;
       }
 
       .features-grid {
@@ -1852,129 +1787,29 @@
       </div>
     </div>
 
-    <!-- RIGHT: ENQUIRE FORM -->
+    <!-- RIGHT: CALL WIDGET -->
     <div class="form-col">
-      <h3>Enquire Now</h3>
-      <form id="enquiryForm" novalidate>
-
-        <!-- Name -->
-        <div class="form-group" id="fg-name">
-          <i class="fa-solid fa-user input-icon"></i>
-          <input type="text" id="inp-name" name="name" placeholder="Enter Name *" autocomplete="off">
-          <div class="error-msg">Please enter your name</div>
+      <div class="call-widget">
+        <div class="call-icon-wrap">
+          <i class="fa-solid fa-phone-volume"></i>
         </div>
-
-        <!-- Email -->
-        <div class="form-group" id="fg-email">
-          <i class="fa-solid fa-envelope input-icon"></i>
-          <input type="email" id="inp-email" name="email" placeholder="Enter Email Address *" autocomplete="off">
-          <div class="error-msg">Please enter a valid email</div>
+        <h3>Talk to Our Counsellor</h3>
+        <p class="call-prompt">To enquire about trades, eligibility, fees &amp; admissions for 2026 — simply give us a call. Our team is ready to help you.</p>
+        <div class="call-numbers">
+          <a href="tel:9064393214" class="call-btn">
+            <i class="fa-solid fa-phone"></i>
+            <span>9064393214</span>
+          </a>
+          <a href="tel:6296901242" class="call-btn">
+            <i class="fa-solid fa-phone"></i>
+            <span>6296901242</span>
+          </a>
         </div>
-
-        <!-- Phone -->
-        <div style="margin-bottom:12px;">
-          <div style="display:flex; gap:8px; align-items:flex-start;">
-            <select class="phone-prefix" name="countryCode" aria-label="Country code" style="width:70px; flex-shrink:0;">
-              <option value="+91">+91</option>
-              <option value="+1">+1</option>
-              <option value="+44">+44</option>
-            </select>
-            <div class="form-group" id="fg-phone" style="flex:1; margin-bottom:0;">
-              <i class="fa-solid fa-phone input-icon"></i>
-              <input type="tel" id="inp-phone" name="phone" placeholder="Enter Mobile Number *" maxlength="10">
-              <div class="error-msg">Please enter a valid 10-digit number</div>
-            </div>
-          </div>
+        <div class="call-hours">
+          <i class="fa-solid fa-clock"></i>
+          <span>Mon – Sat &nbsp;|&nbsp; 9:00 AM – 6:00 PM</span>
         </div>
-
-        <!-- Trade -->
-        <div class="form-group" id="fg-trade">
-          <i class="fa-solid fa-building-columns input-icon"></i>
-          <select id="inp-trade" name="trade">
-            <option value="">Select Trade *</option>
-            <option>Electrician</option>
-            <option>COPA</option>
-            <option>Fitter</option>
-            <option>Solar Technician</option>
-            <option>Housekeeper</option>
-          </select>
-          <div class="error-msg">Please select a trade</div>
-        </div>
-
-        <!-- Session -->
-        <div class="form-group" id="fg-session">
-          <i class="fa-solid fa-calendar input-icon"></i>
-          <select id="inp-session" name="session">
-            <option value="">Select Session *</option>
-            <option>2025–26</option>
-            <option>2026–27</option>
-          </select>
-          <div class="error-msg">Please select a session</div>
-        </div>
-
-        <!-- District -->
-        <div class="form-group" id="fg-district">
-          <i class="fa-solid fa-location-dot input-icon"></i>
-          <select id="inp-district" name="district">
-            <option value="">Select District *</option>
-            <option>Birbhum</option>
-            <option>Bolpur</option>
-            <option>Murshidabad</option>
-            <option>Bardhaman</option>
-            <option>Hooghly</option>
-            <option>Howrah</option>
-            <option>Kolkata</option>
-            <option>Nadia</option>
-            <option>North 24 Parganas</option>
-            <option>South 24 Parganas</option>
-            <option>Purba Medinipur</option>
-            <option>Paschim Medinipur</option>
-            <option>Bankura</option>
-            <option>Purulia</option>
-            <option>Jalpaiguri</option>
-            <option>Darjeeling</option>
-            <option>Malda</option>
-            <option>Other</option>
-          </select>
-          <div class="error-msg">Please select a district</div>
-        </div>
-
-        <!-- Source -->
-        <div class="form-group" style="margin-bottom:10px;">
-          <i class="fa-solid fa-school input-icon"></i>
-          <select id="inp-source" name="source">
-            <option value="">How did you hear about us?</option>
-            <option>Social Media (Facebook/Instagram)</option>
-            <option>YouTube</option>
-            <option>Friends / Family</option>
-            <option>School / Teacher</option>
-            <option>Newspaper / Pamphlet</option>
-            <option>Google Search</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <!-- Consent -->
-        <div class="consent-row">
-          <input type="checkbox" id="consent" name="consent" required>
-          <label for="consent">I authorise Tagore Institute of Art and Education Private ITI to contact me with updates
-            &amp; notifications via Email, SMS, WhatsApp, and voice call. This consent will override any registration
-            for DNC/NDNC. *</label>
-        </div>
-
-        <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
-
-        <button type="submit" class="apply-btn">Apply Now</button>
-
-        <div class="track-link">
-          Already registered? <a href="#">Track Application</a>
-        </div>
-
-        <div class="form-success" id="formSuccess">
-          <i class="fa-solid fa-circle-check" style="font-size:24px; margin-bottom:6px; display:block;"></i>
-          Thank you! Your enquiry has been received. Our counsellor will contact you within 24 hours.
-        </div>
-      </form>
+      </div>
     </div>
 
   </section>
@@ -2589,104 +2424,6 @@
     }
 
     startAutoplay();
-
-    // ========== FORM SUBMISSION ==========
-    const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyMTG8dbPDr1IPldqpfxe3E2WBEaz1lNqrgjxghkoG7np6wTR-SCrYIffDV4CQ65SIE/exec';
-
-    document.querySelectorAll('#enquiryForm').forEach(function (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        let valid = true;
-
-        const checks = [
-          { id: 'fg-name', val: () => document.getElementById('inp-name').value.trim() !== '' },
-          { id: 'fg-email', val: () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('inp-email').value.trim()) },
-          { id: 'fg-phone', val: () => /^\d{10}$/.test(document.getElementById('inp-phone').value.trim()) },
-          { id: 'fg-trade', val: () => document.getElementById('inp-trade').value !== '' },
-          { id: 'fg-session', val: () => document.getElementById('inp-session').value !== '' },
-          { id: 'fg-district', val: () => document.getElementById('inp-district').value !== '' },
-        ];
-
-        checks.forEach(c => {
-          const fg = document.getElementById(c.id);
-          if (!c.val()) {
-            fg.classList.add('error');
-            valid = false;
-          } else {
-            fg.classList.remove('error');
-          }
-        });
-
-        if (!document.getElementById('consent').checked) {
-          valid = false;
-          document.getElementById('consent').style.outline = '2px solid #ff4444';
-        } else {
-          document.getElementById('consent').style.outline = '';
-        }
-
-        if (!valid) return;
-
-        if (document.getElementById('hp-website').value) {
-          document.getElementById('formSuccess').style.display = 'block';
-          form.reset();
-          return;
-        }
-
-        const btn = form.querySelector('.apply-btn');
-        const originalBtnText = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Submitting...';
-        btn.setAttribute('aria-busy', 'true');
-
-        const tradePicked = document.getElementById('inp-trade').value;
-        const districtPicked = document.getElementById('inp-district').value;
-
-        const params = new URLSearchParams({
-          name: document.getElementById('inp-name').value.trim(),
-          email: document.getElementById('inp-email').value.trim(),
-          countryCode: document.querySelector('.phone-prefix').value,
-          phone: document.getElementById('inp-phone').value.trim(),
-          trade: tradePicked,
-          session: document.getElementById('inp-session').value,
-          district: districtPicked,
-          source: document.getElementById('inp-source').value || 'Not specified',
-          consent: 'yes',
-          pageUrl: window.location.href,
-          userAgent: navigator.userAgent
-        });
-
-        fetch(WEBHOOK_URL, { method: 'POST', body: params })
-          .then(function (res) { return res.json(); })
-          .then(function (data) {
-            if (data.ok === true) {
-              window.dataLayer && window.dataLayer.push({
-                event: 'lead_submit',
-                form_name: 'tiae_iti_enquiry',
-                trade: tradePicked,
-                district: districtPicked
-              });
-              window.location.href = 'thank-you.html';
-            } else {
-              throw new Error('not ok');
-            }
-          })
-          .catch(function () {
-            alert('Submission failed. Please try again or call 9064393214.');
-          })
-          .finally(function () {
-            btn.disabled = false;
-            btn.textContent = originalBtnText;
-            btn.removeAttribute('aria-busy');
-          });
-      });
-    });
-
-    // Clear error on input
-    document.querySelectorAll('.form-group input, .form-group select').forEach(el => {
-      el.addEventListener('input', () => {
-        el.closest('.form-group').classList.remove('error');
-      });
-    });
 
     // ========== SCROLL ANIMATIONS ==========
     const animateEls = document.querySelectorAll('.animate-on-scroll');
